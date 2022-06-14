@@ -20,3 +20,5 @@ class BuyPageLocators():
     ADD_TO_CART = (By.CSS_SELECTOR, ".btn-add-to-basket")
     PRODUCT_NAME = (By.CSS_SELECTOR, ".product_page >.row > .product_main > h1")
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".product_main >.price_color")
+    PRODUCT_NAME_BASKET = (By.CSS_SELECTOR, ".alertinner > strong")
+    PRODUCT_PRICE_BASKET = (By.CSS_SELECTOR, ".alertinner > p > strong")

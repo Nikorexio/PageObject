@@ -2,6 +2,7 @@ from .base_page import BasePage
 from .locators import BuyPageLocators
 from selenium.common.exceptions import NoAlertPresentException
 import math
+import time
 
 
 class ProductPage(BasePage):
@@ -18,6 +19,7 @@ class ProductPage(BasePage):
         answer = str(math.log(abs((12 * math.sin(float(x))))))
         alert.send_keys(answer)
         alert.accept()
+        #time.sleep(120)
         try:
             alert = self.browser.switch_to.alert
             alert_text = alert.text
@@ -29,4 +31,13 @@ class ProductPage(BasePage):
     def print_name_and_price(self):
         name = self.browser.find_element(*BuyPageLocators.PRODUCT_NAME).text
         price = self.browser.find_element(*BuyPageLocators.PRODUCT_PRICE).text
-        print(f"name of book: {name}\nprice of book: {price}\n")
+
+    def is_price_equal_to_basket_price(self):
+        price_base = self.browser.find_element(*BuyPageLocators.PRODUCT_PRICE).text
+        price_basket = self.browser.find_element(*BuyPageLocators.PRODUCT_PRICE_BASKET).text
+        assert price_basket == price_base, "price are not equal"
+
+    def is_name_equal_to_basket_price(self):
+        name_base = self.browser.find_element(*BuyPageLocators.PRODUCT_NAME).text
+        name_basket = self.browser.find_element(*BuyPageLocators.PRODUCT_NAME_BASKET).text
+        assert name_base == name_basket, "name are not equal"
